@@ -23,9 +23,7 @@ public class ClientController implements I_Client {
     @Autowired
     private ClientRepository client;
 
-    @Autowired
-    private CommandeRepository commande;
-    @GetMapping("/allVisitors")
+  @GetMapping("/allVisitors")
     public Collection<Client> allVisitors()
     {return client.findAll();
     }

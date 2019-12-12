@@ -11,6 +11,5 @@ import java.util.List;
 
 @Repository
 public interface CommandeRepository extends JpaRepository<Commande,Long> {
-    public Collection<List> allCommandes(@PathVariable Long id_client);
 
 }

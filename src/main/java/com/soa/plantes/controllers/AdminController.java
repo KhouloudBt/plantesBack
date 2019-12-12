@@ -57,8 +57,8 @@ public class AdminController implements I_Admin {
                 return ResponseEntity.notFound().build();
 
             Admin admin1 = adminOptional.get();
-            admin1.setLogin(id);
             admin1.setPassword(admin.getPassword());
+            admin1.setLogin(admin.getLogin());
 
             Admin result = this.admin.save(admin1);
 
