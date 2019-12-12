@@ -18,15 +18,26 @@ public class DBFile {
 
     @Lob
     private byte[] data;
+    @ManyToOne
+    private Plante plante;
 
     public DBFile() {
 
     }
 
-    public DBFile(String fileName, String fileType, byte[] data) {
+    public Plante getPlante() {
+        return plante;
+    }
+
+    public void setPlante(Plante plante) {
+        this.plante = plante;
+    }
+
+    public DBFile(String fileName, String fileType, byte[] data, Plante plante) {
         this.fileName = fileName;
         this.fileType = fileType;
         this.data = data;
+        this.plante=plante;
     }
 
     public String getId() {
