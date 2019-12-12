@@ -1,17 +1,9 @@
 package com.soa.plantes.models;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
-import org.hibernate.annotations.GenericGenerator;
-
 import javax.persistence.*;
 
 @Entity
 @Table(name = "image")
 public class Image {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -23,12 +15,6 @@ public class Image {
     private Plante plante;
 
     public Image() {
-    }
-
-    public Image(String name, String type, byte[] pic) {
-        this.name = name;
-        this.type = type;
-        this.pic = pic;
     }
 
     public Image(String name, String type, byte[] pic, Plante plante) {

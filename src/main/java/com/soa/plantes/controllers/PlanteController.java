@@ -25,22 +25,21 @@ public class PlanteController {
     @Autowired
     public PlanteRepository plante;
 
-    @GetMapping("/allProducts")
-    public Collection<Plante> allPlantes()
-    {return plante.findAll();
+    @GetMapping("/allPlantes")
+    public Collection<Plante> allPlantes() {
+        return plante.findAll();
     }
 
 
     @GetMapping("/PlanteByid/{id}")
-    public Produit findPlante(@PathVariable Long id)
-    {
+    public Produit findPlante(@PathVariable Long id) {
         return plante.findById(id).get();
     }
 
     @PostMapping("/newPlante")
     public ResponseEntity<Void> ajouterPlante(@RequestBody Plante plante) {
 
-        Plante PlanteAdded =  this.plante.save(plante);
+        Plante PlanteAdded = this.plante.save(plante);
 
         if (PlanteAdded == null)
             return ResponseEntity.noContent().build();
@@ -58,19 +57,19 @@ public class PlanteController {
     @GetMapping("/PlanteByName/{name}")
     public List<Plante> getPlanteByName(@PathVariable String name) {
 
-        List <Plante> l1  = new ArrayList();
-        List <Plante> l2  = new ArrayList();
+        List<Plante> l1 = new ArrayList();
+        List<Plante> l2 = new ArrayList();
 
         l1 = this.plante.findAll();
-        for(int i=0; i< l1.size(); i++)
-        {
+        for (int i = 0; i < l1.size(); i++) {
             if (l1.get(i).getNom().equals(name)) l2.add(l1.get(i));
         }
         return l2;
 
     }
+
     @PutMapping("/updatePlante/{id}")
-    public ResponseEntity<Plante> modifierPlante(@Valid @RequestBody Plante plante , @PathVariable("id") Long id) {
+    public ResponseEntity<Plante> modifierPlante(@Valid @RequestBody Plante plante, @PathVariable("id") Long id) {
         {
             Optional<Plante> planteOptional = this.plante.findById(id);
 
@@ -87,7 +86,8 @@ public class PlanteController {
             plante1.setImage(plante.getImage());
             Plante result = this.plante.save(plante1);
 
-            return ResponseEntity.ok().body(result);		}
+            return ResponseEntity.ok().body(result);
+        }
     }
 
 
@@ -96,6 +96,19 @@ public class PlanteController {
 
         plante.deleteById(id);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/PlanteByOrigin/{origin}")
+    public List<Plante> getPlanteByOrigin(@PathVariable String origin) {
+
+        List<Plante> l1 = new ArrayList();
+        List<Plante> l2 = new ArrayList();
+
+        l1 = this.plante.findAll();
+        for (int i = 0; i < l1.size(); i++) {
+            if (l1.get(i).getOrigine().toUpperCase().equals(origin.toUpperCase())) l2.add(l1.get(i));
+        }
+        return l2;
     }
 
 }

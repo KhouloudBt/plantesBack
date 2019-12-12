@@ -3,7 +3,6 @@ package com.soa.plantes.models;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 @Entity
 @Table(name="Clients")
 public class Client implements Serializable {
@@ -13,7 +12,9 @@ public class Client implements Serializable {
 
     private String nom;
     private String prénom;
+    @Column(unique = true)
     private String mail;
+    @Column(unique = true)
     private String login;
     private Boolean type;
     private String password;
@@ -30,10 +31,10 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String nom, String prénom,double coeffFidelite, String mail, String login, String password,  String profile, Adresse adresse, Collection<Commande> commandes, Boolean type) {
+    public Client(String nom, String prénom, String mail, String login, String password,  String profile, Adresse adresse, Collection<Commande> commandes) {
         this.nom = nom;
         this.prénom = prénom;
-        this.coeffFidelite = coeffFidelite;
+        this.coeffFidelite = 0;
         this.mail = mail;
         this.login = login;
         this.password = password;

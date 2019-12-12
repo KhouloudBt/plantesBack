@@ -37,11 +37,9 @@ public class UtilisationController implements I_Utilisation {
         return utilisation.findById(id).get();
     }
 
-    @PostMapping("/newClient")
-    public ResponseEntity<Void> ajouterUtilisation(@RequestBody Utilisation utilisation) {
-
+    @PostMapping("/newUtilisation")
+    public ResponseEntity<Void> ajouterUtilisation(@RequestBody Utilisation utilisation ) {
         Utilisation  utilisationAdded =  this.utilisation.save(utilisation);
-
         if (utilisationAdded == null)
             return ResponseEntity.noContent().build();
 
@@ -50,7 +48,6 @@ public class UtilisationController implements I_Utilisation {
                 .path("/{id}")
                 .buildAndExpand(utilisationAdded.getCode())
                 .toUri();
-
         return ResponseEntity.created(location).build();
     }
 
@@ -81,11 +78,8 @@ public class UtilisationController implements I_Utilisation {
             Utilisation utilisation1 = UtilisationOptional.get();
             utilisation1.setTitre(utilisation.getTitre());
             utilisation1.setGuide(utilisation.getGuide());
-
-
             Utilisation result = this.utilisation.save(utilisation1);
-
-            return ResponseEntity.ok().body(result);		}
+            return ResponseEntity.ok().body(result);}
     }
 
 
@@ -94,21 +88,6 @@ public class UtilisationController implements I_Utilisation {
 
         utilisation.deleteById(id);
         return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/allTitres")
-    public List<Utilisation> allFideles() {
-
-        List <Utilisation> l1  = new ArrayList();
-        List <Utilisation> l2  = new ArrayList();
-
-        l1 = this.utilisation.findAll();
-        for(int i=0; i< l1.size(); i++)
-        {
-            if (l1.get(i).getTitre().toUpperCase().contains("TITRES")) l2.add(l1.get(i));
-        }
-        return l2;
-
     }
 
 }
