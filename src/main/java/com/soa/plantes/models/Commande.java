@@ -14,6 +14,7 @@ public class Commande implements Serializable {
     private Date date;
     private long quantite;
     private Boolean valide;
+    private double sommeAchat;
     @ManyToOne
     private Client client;
     @ManyToMany
@@ -22,12 +23,13 @@ public class Commande implements Serializable {
     public Commande() {
     }
 
-    public Commande(Date date, long quantite, Boolean valide, Client client, Collection<Produit> produits) {
+    public Commande(Date date, long quantite, Boolean valide, Client client, Collection<Produit> produits, double sommeAchat ) {
         this.date = date;
         this.quantite = quantite;
         this.valide = valide;
         this.client = client;
         this.produits = produits;
+        this.sommeAchat=sommeAchat;
     }
 
     public long getId_cf() {
@@ -76,5 +78,13 @@ public class Commande implements Serializable {
 
     public void setProduits(Collection<Produit> produits) {
         this.produits = produits;
+    }
+
+    public double getSommeAchat() {
+        return sommeAchat;
+    }
+
+    public void setSommeAchat(double sommeAchat) {
+        this.sommeAchat = sommeAchat;
     }
 }

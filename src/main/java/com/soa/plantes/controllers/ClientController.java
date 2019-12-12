@@ -1,13 +1,12 @@
 package com.soa.plantes.controllers;
-
 import com.soa.plantes.dao.ClientRepository;
+import com.soa.plantes.dao.CommandeRepository;
 import com.soa.plantes.models.Client;
 import com.soa.plantes.views.I_Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.ArrayList;
@@ -24,6 +23,8 @@ public class ClientController implements I_Client {
     @Autowired
     private ClientRepository client;
 
+    @Autowired
+    private CommandeRepository commande;
     @GetMapping("/allVisitors")
     public Collection<Client> allVisitors()
     {return client.findAll();
@@ -84,7 +85,6 @@ public class ClientController implements I_Client {
             client1.setCommandes(client.getCommandes());
             client1.setMail(client.getMail());
             client1.setPassword(client.getPassword());
-            client1.setType(client.getType());
             client1.setRemise(client.getRemise());
 
 
@@ -101,8 +101,8 @@ public class ClientController implements I_Client {
         return ResponseEntity.ok().build();
     }
 
-@GetMapping("/allClients")
-public List<Client> allClients() {
+  @GetMapping("/allClients")
+   public List<Client> allClients() {
 
     List <Client> l1  = new ArrayList();
     List <Client> l2  = new ArrayList();
@@ -110,7 +110,7 @@ public List<Client> allClients() {
     l1 = this.client.findAll();
     for(int i=0; i< l1.size(); i++)
     {
-        if (l1.get(i).getType().toUpperCase().equals("CLIENT")) l2.add(l1.get(i));
+        if (l1.get(i).getType().equals(Boolean.TRUE)) l2.add(l1.get(i));
     }
     return l2;
 
@@ -125,11 +125,12 @@ public List<Client> allClients() {
         l1 = this.client.findAll();
         for(int i=0; i< l1.size(); i++)
         {
-            if (l1.get(i).getType().toUpperCase().contains("FIDELE")) l2.add(l1.get(i));
+            if (l1.get(i).getCoeffFidelite()>2 ) l2.add(l1.get(i));
         }
         return l2;
 
     }
+
     @GetMapping("/allClientsinCity/{city}")
     public List<Client> allFideles( @PathVariable String city) {
 
@@ -144,5 +145,6 @@ public List<Client> allClients() {
         return l2;
 
     }
+
 
 }

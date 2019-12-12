@@ -1,6 +1,8 @@
 package com.soa.plantes.controllers;
 
+import com.soa.plantes.dao.ClientRepository;
 import com.soa.plantes.dao.CommandeRepository;
+import com.soa.plantes.models.Client;
 import com.soa.plantes.models.Commande;
 import com.soa.plantes.views.I_Commande;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.nio.charset.CoderMalfunctionError;
 import java.util.*;
 
 @RestController
@@ -19,17 +22,14 @@ public class CommandeController implements I_Commande {
 
     @Autowired
     private CommandeRepository commande;
-
-    @GetMapping("/allCommandes")
-    public Collection<Commande> allCommandes()
-    {return commande.findAll();
-    }
+   @Autowired
+   private ClientRepository client;
 
 
-    @GetMapping("/commandeByid/{id}")
-    public Commande findcommande(@PathVariable Long id)
+    @GetMapping("/commandeByid/{idc}")
+    public Commande findcommande(@PathVariable Long idc)
     {
-        return commande.findById(id).get();
+        return commande.findById(idc).get();
     }
 
     @PostMapping("/newCommande")
@@ -50,7 +50,7 @@ public class CommandeController implements I_Commande {
     }
 
 
-    @GetMapping("/CommandeByName/{date}")
+    @GetMapping("/CommandeByDate/{date}")
     public List<Commande> getClientByName(@PathVariable Date date) {
 
         List <Commande> l1  = new ArrayList();

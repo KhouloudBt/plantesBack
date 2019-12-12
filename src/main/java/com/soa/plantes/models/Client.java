@@ -13,13 +13,13 @@ public class Client implements Serializable {
 
     private String nom;
     private String prénom;
-    private String  type;
-    private double coeffFidelite;
     private String mail;
     private String login;
+    private Boolean type;
     private String password;
     private double remise;
     private String profile;
+    private double coeffFidelite;
 
     @OneToOne
     private Adresse adresse;
@@ -30,18 +30,18 @@ public class Client implements Serializable {
     public Client() {
     }
 
-    public Client(String nom, String prénom, String type, double coeffFidelite, String mail, String login, String password, double remise, String profile, Adresse adresse, Collection<Commande> commandes) {
+    public Client(String nom, String prénom,double coeffFidelite, String mail, String login, String password,  String profile, Adresse adresse, Collection<Commande> commandes, Boolean type) {
         this.nom = nom;
         this.prénom = prénom;
-        this.type = type;
         this.coeffFidelite = coeffFidelite;
         this.mail = mail;
         this.login = login;
         this.password = password;
-        this.remise = remise;
+        this.remise = 0;
         this.profile = profile;
         this.adresse = adresse;
         this.commandes = commandes;
+        this.type =false;
     }
 
     public Client(String nom, String prénom, String mail) {
@@ -74,13 +74,6 @@ public class Client implements Serializable {
         this.prénom = prénom;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
 
     public double getCoeffFidelite() {
         return coeffFidelite;
@@ -88,6 +81,14 @@ public class Client implements Serializable {
 
     public void setCoeffFidelite(double coeffFidelite) {
         this.coeffFidelite = coeffFidelite;
+    }
+
+    public Boolean getType() {
+        return type;
+    }
+
+    public void setType(Boolean type) {
+        this.type = type;
     }
 
     public String getMail() {
