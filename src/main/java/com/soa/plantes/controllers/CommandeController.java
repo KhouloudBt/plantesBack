@@ -16,7 +16,7 @@ import java.nio.charset.CoderMalfunctionError;
 import java.util.*;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/Commande")
 public class CommandeController implements I_Commande {
 

@@ -10,7 +10,7 @@ public class Plante extends Produit {
     private String origine;
     private String description;
     @OneToMany(mappedBy = "plante")
-    private DBFile photos ;
+    private Collection <Image> image;
 
     @OneToOne
     private Fleur fleur;
@@ -27,12 +27,12 @@ public class Plante extends Produit {
         this.fleur = fleur;
     }
 
-    public Plante(String nom, double prix, Long stock, Collection<Couleur> couleurs, Collection<Utilisation> utilisations, Collection<Commande> commandes, String origine, String description, Fleur fleur, DBFile photos) {
+    public Plante(String nom, double prix, Long stock, Collection<Couleur> couleurs, Collection<Utilisation> utilisations, Collection<Commande> commandes, String origine, String description, Fleur fleur, Collection<Image> photos) {
         super(nom, prix, stock, couleurs, utilisations, commandes);
         this.origine = origine;
         this.description = description;
         this.fleur=fleur;
-        this.photos=photos;
+        this.image=photos;
     }
     public String getOrigine() {
         return origine;
@@ -51,4 +51,11 @@ public class Plante extends Produit {
     }
 
 
+    public Collection<Image> getImage() {
+        return image;
+    }
+
+    public void setImage(Collection<Image> image) {
+        this.image = image;
+    }
 }

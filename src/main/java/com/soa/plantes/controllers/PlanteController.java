@@ -17,7 +17,7 @@ import java.util.Optional;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*")
 @RequestMapping("/Plante")
 public class PlanteController {
 
@@ -84,6 +84,7 @@ public class PlanteController {
             plante1.setStock(plante.getStock());
             plante1.setDescription(plante.getDescription());
             plante1.setOrigine(plante.getOrigine());
+            plante1.setImage(plante.getImage());
             Plante result = this.plante.save(plante1);
 
             return ResponseEntity.ok().body(result);		}
