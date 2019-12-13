@@ -81,8 +81,8 @@ public class AdresseController implements I_Adresse {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/allCityes")
-    public List<Adresse> allCityes() {
+    @GetMapping("/allCities/{city}")
+    public List<Adresse> allCities(@PathVariable("city") String city ) {
 
         List <Adresse> l1  = new ArrayList();
         List <Adresse> l2  = new ArrayList();
@@ -90,7 +90,7 @@ public class AdresseController implements I_Adresse {
         l1 = this.adresse.findAll();
         for(int i=0; i< l1.size(); i++)
         {
-            if (l1.get(i).getCity().toUpperCase().contains("CITYES")) l2.add(l1.get(i));
+            if (l1.get(i).getCity().toUpperCase().contains(city.toUpperCase())) l2.add(l1.get(i));
         }
         return l2;
 

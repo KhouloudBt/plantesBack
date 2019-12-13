@@ -1,6 +1,5 @@
 package com.soa.plantes.controllers;
 import com.soa.plantes.dao.ClientRepository;
-import com.soa.plantes.dao.CommandeRepository;
 import com.soa.plantes.models.Client;
 import com.soa.plantes.views.I_Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,11 +21,13 @@ public class ClientController implements I_Client {
 
     @Autowired
     private ClientRepository client;
+    @Autowired
 
   @GetMapping("/allVisitors")
     public Collection<Client> allVisitors()
     {return client.findAll();
     }
+
 
 
     @GetMapping("/clientByid/{id}")
@@ -114,6 +115,7 @@ public class ClientController implements I_Client {
 
 }
 
+
     @GetMapping("/allFideles")
     public List<Client> allFideles() {
 
@@ -126,6 +128,7 @@ public class ClientController implements I_Client {
             if (l1.get(i).getCoeffFidelite()>2 ) l2.add(l1.get(i));
         }
         return l2;
+
 
     }
 

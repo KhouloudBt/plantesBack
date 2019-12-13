@@ -10,6 +10,7 @@ public class Admin implements Serializable {
     @Id
     @GeneratedValue
     private Long id;
+    @Column(unique = true)
     private String login;
     private String password ;
 

@@ -10,7 +10,7 @@ public class Adresse  implements Serializable {
     private   Long id ;
     private String city;
     private int streetNumber ;
-    private String postalCode;
+    private Long  postalCode;
 
     @OneToOne(mappedBy = "adresse")
     private Client client;
@@ -18,7 +18,7 @@ public class Adresse  implements Serializable {
     public Adresse() {
     }
 
-    public Adresse(String city, int streetNumber, String postalCode, Client client) {
+    public Adresse(String city, int streetNumber, Long postalCode, Client client) {
         this.city = city;
         this.streetNumber = streetNumber;
         this.postalCode = postalCode;
@@ -49,11 +49,11 @@ public class Adresse  implements Serializable {
         this.streetNumber = streetNumber;
     }
 
-    public String getPostalCode() {
+    public Long getPostalCode() {
         return postalCode;
     }
 
-    public void setPostalCode(String postalCode) {
+    public void setPostalCode(Long postalCode) {
         this.postalCode = postalCode;
     }
 

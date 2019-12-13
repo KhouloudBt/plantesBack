@@ -1,5 +1,4 @@
 package com.soa.plantes.controllers;
-
 import com.soa.plantes.dao.FleurRepository;
 import com.soa.plantes.models.Fleur;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +19,10 @@ import java.util.Optional;
 public class FleurController {
 
 
-
-
     @Autowired
     public FleurRepository fleur;
 
-    @GetMapping("/allProducts")
+    @GetMapping("/allFleurs")
     public Collection<Fleur> allFleurs()
     {return fleur.findAll();
     }
@@ -73,8 +70,6 @@ public class FleurController {
     public ResponseEntity<Fleur> modifierFleur(@Valid @RequestBody Fleur fleur , @PathVariable("id") Long id) {
         {
             Optional<Fleur> fleurOptional = this.fleur.findById(id);
-
-
             if (!fleurOptional.isPresent())
                 return ResponseEntity.notFound().build();
 
@@ -83,9 +78,7 @@ public class FleurController {
             fleur1.setPrix(fleur.getPrix());
             fleur1.setStock(fleur.getStock());
             fleur1.setOdeur(fleur.getOdeur());
-
             Fleur result = this.fleur.save(fleur1);
-
             return ResponseEntity.ok().body(result);		}
     }
 

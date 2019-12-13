@@ -56,7 +56,10 @@ public abstract class Produit implements Serializable {
     }
 
     public void setPrix(double prix) {
-        this.prix = prix;
+        if (prix <0 )
+        System.out.println("valeur erronée ");
+        else {
+        this.prix = prix;}
     }
 
     public Long getStock() {
@@ -64,7 +67,10 @@ public abstract class Produit implements Serializable {
     }
 
     public void setStock(Long stock) {
-        this.stock = stock;
+        if (stock <0 )
+            System.out.println("valeur erronée ");
+        else {
+        this.stock = stock;}
     }
 
     public Collection<Couleur> getCouleurs() {
